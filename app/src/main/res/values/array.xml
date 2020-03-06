@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="dummy_names_array">
+        <item>Foo</item>
+        <item>Bar</item>
+        <item>Baz</item>
+    </string-array>
+
+    <string-array name="dummy_values_array">
+        <item>foo</item>
+        <item>bar</item>
+        <item>baz</item>
+    </string-array>
+</resources>

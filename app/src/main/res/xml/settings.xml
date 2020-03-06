@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:key="quantity"
+        android:title="Number of questions"/>
+
+    <ListPreference
+        android:key="category"
+        android:title="Category"
+        android:entryValues="@array/dummy_values_array"
+        android:entries="@array/dummy_names_array"/>
+
+    <ListPreference
+        android:key="difficulty"
+        android:title="Difficulty"
+        android:entryValues="@array/dummy_values_array"
+        android:entries="@array/dummy_names_array"/>
+
+    <ListPreference
+        android:key="type"
+        android:title="Type of questions"
+        android:entryValues="@array/dummy_values_array"
+        android:entries="@array/dummy_names_array"/>
+
+</PreferenceScreen>
