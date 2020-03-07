@@ -24,5 +24,5 @@ public class DataViewModel extends ViewModel {
     public MutableLiveData<List<Quiz>> getUsersData() {return mQuizData;}
     public MutableLiveData<String> getErrorMessage() {return mErrorMessage;}
 
-    public void downloadQuiz(Context context, String jsonurl) {mRepository.downloadQuizByJSON(context, jsonurl);}
+    public void downloadQuiz(Context context) {mRepository.downloadQuizByJSON(context);}
 }

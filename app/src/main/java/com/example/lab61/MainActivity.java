@@ -1,16 +1,69 @@
 package com.example.lab61;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
+import android.view.View;
+import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.lab61.adapter.QuestionAdapter;
+import com.example.lab61.subclasses.Quiz;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+
+    DataViewModel viewModel;
+    RecyclerView recyclerView;
+    QuestionAdapter questionAdapter;
+    Button btn_submit;
+    private static final String TAG = "MainActivity";
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Log.d(TAG, "onCreate: called");
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+        initViews();
+
+
+        viewModel = ViewModelProviders.of(this).get(DataViewModel.class);
+        viewModel.downloadQuiz(MainActivity.this);
+        viewModel.getUsersData().observe(this, new Observer<List<Quiz>>() {
+            @Override
+            public void onChanged(List<Quiz> quizzes) {
+                Log.d(TAG, "data received" + quizzes.toString());
+                questionAdapter = new QuestionAdapter(MainActivity.this, quizzes);
+                recyclerView.setAdapter(questionAdapter);
+                btn_submit.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+
+    }
+
+    private void initViews() {
+        recyclerView = findViewById(R.id.rv_question);
+        btn_submit = findViewById(R.id.btn_submit);
+        btn_submit.setVisibility(View.INVISIBLE);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -18,17 +71,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         return true;
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        SharedPreferences sharedPreferences =  PreferenceManager.getDefaultSharedPreferences(this);
-        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
-        LinearLayout body = findViewById(R.id.body);
-        for (int i = 0; i < 12; i++) {
-            body.addView(new QuestionView(this) {});
-        }
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -67,4 +109,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 //        SharedPreferences myprefs = PreferenceManager.getDefaultSharedPreferences(MyPreferenceTestActivity.this);
     }
 
+    public void showResult(View view) {
+        Intent intent=new Intent(MainActivity.this,ScoreActivity.class);
+        startActivity(intent);
+    }
 }

@@ -1,22 +1,30 @@
 package com.example.lab61.subclasses;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
 public class Quiz {
 
+    @SerializedName("category")
+    @Expose
     private String category;
+    @SerializedName("type")
+    @Expose
     private String type;
+    @SerializedName("difficulty")
+    @Expose
     private String difficulty;
+    @SerializedName("question")
+    @Expose
     private String question;
-    private String correct_answer;
-    private IncorrectAnswers incorrect_aswers;
-
-    public Quiz(String category, String type, String difficulty, String question, String correct_answer, IncorrectAnswers incorrect_aswers) {
-        this.category = category;
-        this.type = type;
-        this.difficulty = difficulty;
-        this.question = question;
-        this.correct_answer = correct_answer;
-        this.incorrect_aswers = incorrect_aswers;
-    }
+    @SerializedName("correct_answer")
+    @Expose
+    private String correctAnswer;
+    @SerializedName("incorrect_answers")
+    @Expose
+    private List<String> incorrectAnswers = null;
 
     public String getCategory() {
         return category;
@@ -50,19 +58,32 @@ public class Quiz {
         this.question = question;
     }
 
-    public String getCorrect_answer() {
-        return correct_answer;
+    public String getCorrectAnswer() {
+        return correctAnswer;
     }
 
-    public void setCorrect_answer(String correct_answer) {
-        this.correct_answer = correct_answer;
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
     }
 
-    public IncorrectAnswers getIncorrect_aswers() {
-        return incorrect_aswers;
+    public List<String> getIncorrectAnswers() {
+        return incorrectAnswers;
     }
 
-    public void setIncorrect_aswers(IncorrectAnswers incorrect_aswers) {
-        this.incorrect_aswers = incorrect_aswers;
+    public void setIncorrectAnswers(List<String> incorrectAnswers) {
+        this.incorrectAnswers = incorrectAnswers;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Quiz{" +
+                "category='" + category + '\'' +
+                ", type='" + type + '\'' +
+                ", difficulty='" + difficulty + '\'' +
+                ", question='" + question + '\'' +
+                ", correctAnswer='" + correctAnswer + '\'' +
+                ", incorrectAnswers=" + incorrectAnswers +
+                '}';
     }
 }
