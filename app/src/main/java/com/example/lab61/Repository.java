@@ -1,6 +1,7 @@
 package com.example.lab61;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
@@ -26,7 +27,7 @@ public class Repository {
     private RequestQueue queue;
     private MutableLiveData<List<Quiz>> quiz = new MutableLiveData<>();
     private MutableLiveData<String> errorMessage = new MutableLiveData<>();
-    static String URL = "https://opentdb.com/api.php?amount=10&category=12&difficulty=easy&type=multiple";
+    static String URL = "https://opentdb.com/api.php?amount=%s&category=12&difficulty=easy&type=multiple";
 
 
 //   public Repository(Application application) {
@@ -42,13 +43,16 @@ public class Repository {
     }
 
 
-    void downloadQuizByJSON(Context context) {
+    void downloadQuizByJSON(Context context, SharedPreferences preferences) {
 
         queue = MySingletonQueue.getInstance(context).getRequestQueue();
 
         //Download
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                URL, null,
+                String.format(
+                        URL,
+                        String.valueOf(preferences.getString("QUANTITY", "10"))
+                ), null,
                 new Response.Listener<JSONObject>() {
 
                     @Override

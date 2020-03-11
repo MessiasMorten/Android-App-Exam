@@ -42,18 +42,30 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.MyView
 
         if (quizzes.get(position) != null) {
             try {
-                holder.tv_question_num.setText(String.format("Question #%s :", String.valueOf(position)));
-                holder.tv_question_text.setText(quizzes.get(position).getQuestion());
+                holder.tv_question_num.setText(String.format("Question #%s:", String.valueOf(position + 1)));
+                holder.tv_question_text.setText(
+                        quizzes.get(position).getQuestion()
+                                .replaceAll("&#039;", "'")
+                                .replaceAll("&quot;", "'")
+                );
                 List<String> questions = new ArrayList<>();
                 questions.add(quizzes.get(position).getCorrectAnswer());
                 questions.addAll(quizzes.get(position).getIncorrectAnswers());
                 Collections.shuffle(questions);
 
 
-                holder.option1.setText(questions.get(0));
-                holder.option2.setText(questions.get(1));
-                holder.option3.setText(questions.get(2));
-                holder.option4.setText(questions.get(3));
+                holder.option1.setText(questions.get(0)
+                        .replaceAll("&#039;", "'")
+                        .replaceAll("&quot;", "'"));
+                holder.option2.setText(questions.get(1)
+                        .replaceAll("&#039;", "'")
+                        .replaceAll("&quot;", "'"));
+                holder.option3.setText(questions.get(2)
+                        .replaceAll("&#039;", "'")
+                        .replaceAll("&quot;", "'"));
+                holder.option4.setText(questions.get(3)
+                        .replaceAll("&#039;", "'")
+                        .replaceAll("&quot;", "'"));
 
 
             } catch (Exception e) {

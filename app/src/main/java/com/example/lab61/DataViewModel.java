@@ -1,6 +1,7 @@
 package com.example.lab61;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 
 import androidx.lifecycle.MutableLiveData;
@@ -24,5 +25,7 @@ public class DataViewModel extends ViewModel {
     public MutableLiveData<List<Quiz>> getUsersData() {return mQuizData;}
     public MutableLiveData<String> getErrorMessage() {return mErrorMessage;}
 
-    public void downloadQuiz(Context context) {mRepository.downloadQuizByJSON(context);}
+    public void downloadQuiz(Context context, SharedPreferences preferences) {
+        mRepository.downloadQuizByJSON(context, preferences);
+    }
 }
