@@ -86,10 +86,13 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     private void writeToSharedPreference(){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        EditText quantity = findViewById(R.id.quantity);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("QUANTITY", quantity.getText().toString());
-        editor.apply();
+        boolean saveOnExit = sharedPreferences.getBoolean("PREF_SAVE_ON_EXIT", false);
+        if (saveOnExit) {
+            EditText quantity = (EditText) findViewById(R.id.quantity);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("QUANTITY", quantity.getText().toString());
+            editor.apply();
+        }
     }
 
     @Override
