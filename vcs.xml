@@ -28,10 +28,14 @@
         </UrlAndUserName>
         <UrlAndUserName>
           <option name="url" value="http://bitbucket.org" />
-          <option name="userName" value="mje079@post.uit.no" />
+          <option name="userName" value="MessiasMorten" />
         </UrlAndUserName>
         <UrlAndUserName>
           <option name="url" value="https://bitbucket.org/bli034/mobil_karakterprosjekt.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://MessiasMorten@bitbucket.org/bli034/mobil_karakterprosjekt.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
       </list>
