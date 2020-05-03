@@ -26,6 +26,14 @@
           <option name="url" value="https://gitlab.com/MessiasMorten/lab-8.3.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="http://bitbucket.org" />
+          <option name="userName" value="mje079@post.uit.no" />
+        </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://bitbucket.org/bli034/mobil_karakterprosjekt.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="C:\Users\Morten\StudioProjects" />
