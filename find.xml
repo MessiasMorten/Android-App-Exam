@@ -1,7 +1,7 @@
 <application>
   <component name="FindSettings">
-    <option name="customScope" value="Directory '...'" />
-    <option name="defaultScopeName" value="Directory '...'" />
-    <option name="SEARCH_SCOPE" value="Directory '...'" />
+    <option name="customScope" value="Project 'Image to Byte Array'" />
+    <option name="defaultScopeName" value="Project 'Image to Byte Array'" />
+    <option name="SEARCH_SCOPE" value="Project 'Image to Byte Array'" />
   </component>
 </application>
